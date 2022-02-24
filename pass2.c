@@ -7,18 +7,18 @@ void main(){
         FILE *output,*interFile,*lenFile,*optab,*symtab;
         
         char address[10],label[10],opcode[10],operand[10],len[5],mnemonic[10],mnemonic_val[5],symbol[10],symbol_val[10];
-        int length,opcode_found,counter=0,ignore=0,constant=0,sym_found;
+        int opcode_found,counter=0,ignore=0,constant=0,sym_found;
         //printf("length %d",length);
         interFile=fopen("interFile.txt","r");
         //output=fopen("output.txt","w");
         lenFile=fopen("lenFile.txt","r");
         fscanf(interFile,"%s\t%s\t%s\t%s",address,label,opcode,operand);
         fscanf(lenFile,"%s",len);
-        length=atoi(len);
+        //length=atoi(len);
         //printf("length %d",length);
         if(strcmp(opcode,"START")==0){
            // fprintf(output,"H^%s^%.6d^%.6d\n",label,atoi(operand),length);
-            printf("H^%s^%.6d^%.6d",label,atoi(operand),length);
+            printf("H^%s^%s^%s",label,operand,len);
             fscanf(interFile,"%s\t%s\t%s\t%s",address,label,opcode,operand);
         }
 
@@ -83,16 +83,16 @@ void main(){
                         counter=1;
                     if(counter==1){
                        // fprintf(output,"\nT^%.6d^1E^",atoi(address));
-                        printf("\nT^%.6s^1E",address);
+                        printf("\nT^%s^1E",address);
                     }
                     //fprintf(output,"%.6d^",atoi(mnemonic_val));
-                    printf("^%.6s",mnemonic_val);
+                    printf("^%s",mnemonic_val);
                 }
                 fscanf(interFile,"%s\t%s\t%s\t%s",address,label,opcode,operand);
 
                 if(strcmp(opcode,"END")==0){
                     //fprintf(output,"\nE^%.6d",atoi(operand));
-                    printf("\nE^%.6s",operand);
+                    printf("\nE^%s",operand);
                     
                     exit(1);
                 }
