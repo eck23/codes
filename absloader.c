@@ -7,7 +7,7 @@ void main(){
     FILE *objcode,*tempFile;
     objcode=fopen("objcode.txt","r");
 
-    char record[200],address[10],temp[10],temp1[10];
+    char record[200],address[10],temp[10];
     int i,start,count=0,j=0,change=0;
     fscanf(objcode,"%s",record);
   
@@ -20,7 +20,7 @@ void main(){
         if(count==3)
             break;
     }
-    
+    // scanf("%x",&start);
     tempFile=fopen("tempFile.txt","w");
 	fprintf(tempFile,"%s",address);
 	fclose(tempFile);
