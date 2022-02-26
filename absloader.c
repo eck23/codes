@@ -20,32 +20,36 @@ void main(){
         if(count==3)
             break;
     }
-    scanf("%x",&start);
-    // tempFile=fopen("tempFile.txt","w");
-	// fprintf(tempFile,"%s",address);
-	// fclose(tempFile);
-	// tempFile=fopen("tempFile.txt","r");
-	// fscanf(tempFile,"%x",&start);
-	// fclose(tempFile);
-    fscanf(objcode,"%s",record);
+   
+    	tempFile=fopen("tempFile.txt","w");
+	fprintf(tempFile,"%s",address);
+	fclose(tempFile);
+	tempFile=fopen("tempFile.txt","r");
+	fscanf(tempFile,"%x",&start);
+	fclose(tempFile);
+    	fscanf(objcode,"%s",record);
     
-    printf("adress\tobjectCode",record);
+    printf("adress\tobjectCode");
     
     while (record[0]!='E' && !feof(objcode))
     {
         
         count=0;
+	change=0;
+	
         for(i=0;record[i]!='\0';i++){
             if(record[i]=='^'){
                  count++;
-                 j=0;
-                 if(count>=3){
-                    printf("\n%x\t",start);
-                    start+=3;
-                 }
+                
             }
             if(count>=3 && record[i]!='^'){
+		
+		if(change==0){
+			printf("\n%x\t",start);
+			start+=1;		
+		}
                 printf("%c",record[i]);
+		change=!change;
             }
                 
         }
